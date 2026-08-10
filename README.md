@@ -1,61 +1,125 @@
 # Utils
 
-Proyecto con funcionalidades comunes utiles.
+Utils es una aplicacion web de herramientas para developers. Reune utilidades comunes para trabajar con JSON, XML, CSV, Base64, JWT, URLs, UUIDs, timestamps y hashes desde una sola interfaz.
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.3.
+Todas las transformaciones se ejecutan localmente en el navegador. La aplicacion no utiliza backend ni envia los datos introducidos a servidores externos.
 
-## Development server
+## Demo
 
-To start a local development server, run:
+La aplicacion esta publicada en GitHub Pages:
 
-```bash
-ng serve
+```text
+https://jenner2017.github.io/utils/
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Herramientas
 
-## Code scaffolding
+- **JSON Formatter**: valida, formatea y minimiza JSON.
+- **JSON Escape**: escapa y desescapa contenido de texto JSON.
+- **XML <-> JSON**: convierte documentos XML y JSON localmente.
+- **CSV <-> JSON**: convierte datos tabulares, incluyendo rutas anidadas en encabezados CSV.
+- **Base64**: codifica y decodifica texto Unicode en Base64.
+- **URL Encode / Decode**: codifica, decodifica e inspecciona parametros de URL.
+- **JWT Decoder**: muestra el header y payload de un JWT sin verificar su firma.
+- **Timestamp Converter**: convierte timestamps Unix y fechas entre UTC, hora local e ISO 8601.
+- **UUID Generator**: genera UUID v4 usando las APIs criptograficas del navegador.
+- **Hash Generator**: genera hashes SHA-256, SHA-384 y SHA-512 usando Web Crypto API.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Privacidad
 
-```bash
-ng generate component component-name
+Utils esta disenada para trabajar sin backend. El contenido introducido por el usuario permanece en el navegador y no se envia a servicios externos.
+
+La decodificacion de un JWT no verifica su firma ni confirma que el token sea valido.
+
+## Tecnologia
+
+- Angular 22
+- Standalone components
+- Angular Router con lazy loading
+- Signals y control flow moderno de Angular
+- TypeScript con configuracion estricta
+- Web APIs nativas: Clipboard, Web Crypto, DOMParser, URL, TextEncoder y TextDecoder
+- Space Grotesk para la interfaz
+- JetBrains Mono para contenido tecnico
+
+No se utilizan dependencias externas para realizar las transformaciones de datos.
+
+## Estructura
+
+```text
+src/app/
+├── layout/
+│   ├── main-layout/
+│   └── sidebar/
+├── features/
+│   ├── converters/
+│   ├── generators/
+│   ├── json/
+│   └── web/
+└── shared/
+    └── components/
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Cada herramienta es un componente standalone independiente y se carga de forma lazy mediante Angular Router.
+
+## Desarrollo local
+
+Requisitos:
+
+- Node.js compatible con Angular 22
+- npm
+
+Instala las dependencias:
 
 ```bash
-ng generate --help
+npm ci
 ```
 
-## Building
-
-To build the project run:
+Inicia el servidor de desarrollo:
 
 ```bash
-ng build
+npm start
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Abre `http://localhost:4200/` en el navegador.
 
-## Running unit tests
+## Build y tests
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Ejecuta el build de produccion:
 
 ```bash
-ng test
+npm run build
 ```
 
-## Running end-to-end tests
+El resultado se genera en:
 
-For end-to-end (e2e) testing, run:
+```text
+dist/utils/browser
+```
+
+Ejecuta los tests en modo no interactivo:
 
 ```bash
-ng e2e
+npm test -- --watch=false
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## GitHub Pages
 
-## Additional Resources
+El despliegue se ejecuta automaticamente mediante:
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+```text
+.github/workflows/deploy.yml
+```
+
+El workflow se ejecuta al hacer push sobre `master` y realiza estos pasos:
+
+1. Instala las dependencias con `npm ci`.
+2. Construye Angular usando `--base-href /utils/`.
+3. Publica `dist/utils/browser` como artefacto de GitHub Pages.
+4. Despliega el artefacto en el entorno `github-pages`.
+
+La aplicacion utiliza hash routing para funcionar correctamente en GitHub Pages:
+
+```text
+https://jenner2017.github.io/utils/#/json/formatter
+```
