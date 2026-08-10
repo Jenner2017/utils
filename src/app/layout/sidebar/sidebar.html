@@ -1,0 +1,32 @@
+<button
+  class="mobile-toggle"
+  type="button"
+  (click)="toggleMenu()"
+  [attr.aria-expanded]="menuOpen()"
+  aria-label="Toggle navigation"
+>
+  <span></span><span></span><span></span>
+</button>
+<aside class="sidebar" [class.open]="menuOpen()">
+  <a class="brand" routerLink="/json/formatter" (click)="closeMenu()"
+    ><span>&lt;/&gt;</span> utils</a
+  >
+  <nav aria-label="Tools navigation">
+    @for (group of groups; track group.label) {
+      <section class="nav-group">
+        <h2>{{ group.label }}</h2>
+        @for (item of group.items; track item.path) {
+          <a
+            class="nav-item"
+            [routerLink]="item.path"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            (click)="closeMenu()"
+            >{{ item.label }}</a
+          >
+        }
+      </section>
+    }
+  </nav>
+  <p class="privacy-note">All processing happens<br />locally in your browser.</p>
+</aside>

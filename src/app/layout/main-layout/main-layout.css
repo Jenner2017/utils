@@ -1,0 +1,18 @@
+:host {
+  display: block;
+  min-height: 100dvh;
+}
+.app-shell {
+  display: flex;
+  min-height: 100dvh;
+}
+.main-content {
+  flex: 1;
+  min-width: 0;
+  padding: 48px clamp(24px, 5vw, 80px);
+}
+@media (max-width: 700px) {
+  .main-content {
+    padding: 24px 16px 40px;
+  }
+}

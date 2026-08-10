@@ -1,0 +1,28 @@
+<div class="tool">
+  <app-tool-header title="Base64" description="Encode text to Base64 or decode it locally." />
+  <div class="form-stack">
+    <label class="panel-label" for="base64-input">Input</label>
+    <textarea
+      id="base64-input"
+      class="code-area"
+      [(ngModel)]="input"
+      placeholder="Type text or Base64 here..."
+      spellcheck="false"
+    ></textarea>
+    <div class="actions">
+      <button class="primary" type="button" (click)="encode()">Encode</button>
+      <button class="secondary" type="button" (click)="decode()">Decode</button>
+      <button class="quiet" type="button" (click)="clear()">Clear</button>
+    </div>
+    @if (error) {
+      <p class="error" role="alert">{{ error }}</p>
+    }
+    <div class="panel-label">
+      <span>Output</span>
+      @if (output) {
+        <app-copy-button [text]="output" />
+      }
+    </div>
+    <pre class="code-area output">{{ output || 'Result will appear here.' }}</pre>
+  </div>
+</div>

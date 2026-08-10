@@ -1,0 +1,9 @@
+<div class="copy-wrapper">
+  <button type="button" class="copy-button" (click)="copy()">Copy</button>
+  @if (copied()) {
+    <span class="copy-feedback" role="status" aria-live="polite">Copied to clipboard</span>
+  }
+  @if (copyFailed()) {
+    <span class="copy-feedback copy-failed" role="alert">Copy failed</span>
+  }
+</div>

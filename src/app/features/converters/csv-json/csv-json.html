@@ -1,0 +1,35 @@
+<div class="tool">
+  <app-tool-header
+    title="CSV ↔ JSON"
+    description="Convert tabular data between CSV and JSON in your browser."
+  />
+  <div class="workbench">
+    <section class="panel">
+      <div class="panel-label"><label for="csv-input">Input</label></div>
+      <textarea
+        id="csv-input"
+        class="code-area"
+        [(ngModel)]="input"
+        placeholder="id,name,age&#10;1,Carlos,27"
+        spellcheck="false"
+      ></textarea>
+      <div class="actions">
+        <button class="primary" type="button" (click)="convert('csv')">CSV to JSON</button>
+        <button class="secondary" type="button" (click)="convert('json')">JSON to CSV</button>
+        <button class="quiet" type="button" (click)="clear()">Clear</button>
+      </div>
+      @if (error) {
+        <p class="error" role="alert">{{ error }}</p>
+      }
+    </section>
+    <section class="panel">
+      <div class="panel-label">
+        <span>Output</span>
+        @if (output) {
+          <app-copy-button [text]="output" />
+        }
+      </div>
+      <pre class="code-area output">{{ output || 'Converted content will appear here.' }}</pre>
+    </section>
+  </div>
+</div>

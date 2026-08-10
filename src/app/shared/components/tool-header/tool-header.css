@@ -1,0 +1,23 @@
+.tool-header {
+  margin-bottom: 38px;
+}
+.eyebrow {
+  margin: 0 0 13px;
+  color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+h1 {
+  margin: 0;
+  color: var(--text);
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 600;
+  letter-spacing: -0.055em;
+  line-height: 1.1;
+}
+.description {
+  margin: 12px 0 0;
+  color: var(--text-muted);
+  font-size: 14px;
+}
