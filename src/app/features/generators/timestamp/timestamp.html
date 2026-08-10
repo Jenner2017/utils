@@ -1,0 +1,41 @@
+<div class="tool">
+  <app-tool-header
+    title="Timestamp Converter"
+    description="Convert Unix timestamps and dates without leaving your browser."
+  />
+  <div class="form-stack">
+    <div class="form-row">
+      <label for="timestamp-input">
+        Timestamp or date
+        <input
+          id="timestamp-input"
+          class="text-input"
+          [(ngModel)]="input"
+          placeholder="1710000000 or 2024-03-09"
+        />
+      </label>
+      <label for="timestamp-unit">
+        Unit
+        <select id="timestamp-unit" class="select-input" [(ngModel)]="unit">
+          <option value="seconds">Seconds</option>
+          <option value="milliseconds">Milliseconds</option>
+        </select>
+      </label>
+    </div>
+    <div class="actions">
+      <button class="primary" type="button" (click)="toDate()">Timestamp to date</button>
+      <button class="secondary" type="button" (click)="toTimestamp()">Date to timestamp</button>
+      <button class="quiet" type="button" (click)="clear()">Clear</button>
+    </div>
+    @if (error) {
+      <p class="error" role="alert">{{ error }}</p>
+    }
+    <div class="panel-label">
+      <span>Output</span>
+      @if (output) {
+        <app-copy-button [text]="output" />
+      }
+    </div>
+    <pre class="code-area output">{{ output || 'Conversion details will appear here.' }}</pre>
+  </div>
+</div>
