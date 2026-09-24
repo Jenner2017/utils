@@ -1,3 +1,11 @@
 .output {
   margin: 0;
+  height: 330px;
+  overflow-y: auto;
+}
+
+@media (max-width: 760px) {
+  .output {
+    height: 240px;
+  }
 }

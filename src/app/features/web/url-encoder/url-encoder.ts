@@ -38,7 +38,9 @@ import { ToolHeader } from '../../../shared/components/tool-header/tool-header';
       <pre class="code-area output">{{ output || 'Result will appear here.' }}</pre>
     </div>
   </div>`,
-  styles: ['.output { margin: 0; min-height: 170px; }'],
+  styles: [
+    '.output { margin: 0; min-height: 170px; height: 170px; overflow-y: auto; } @media (max-width: 760px) { .output { min-height: 240px; height: 240px; } }',
+  ],
 })
 export class UrlEncoder {
   protected input = '';

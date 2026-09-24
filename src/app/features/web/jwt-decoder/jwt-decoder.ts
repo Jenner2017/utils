@@ -53,7 +53,7 @@ interface JwtPart {
     </div>
   </div>`,
   styles: [
-    '.warning { margin: -22px 0 25px; color: var(--text-muted); } .output { margin: 0; min-height: 190px; } .metadata { display: flex; flex-wrap: wrap; gap: 9px 20px; margin-top: 20px; color: var(--text-muted); font-size: 12px; } .metadata b { color: var(--text); font-weight: 500; }',
+    '.warning { margin: -22px 0 25px; color: var(--text-muted); } .output { margin: 0; min-height: 190px; height: 190px; overflow-y: auto; } .metadata { display: flex; flex-wrap: wrap; gap: 9px 20px; margin-top: 20px; color: var(--text-muted); font-size: 12px; } .metadata b { color: var(--text); font-weight: 500; } @media (max-width: 760px) { .output { min-height: 240px; height: 240px; } }',
   ],
 })
 export class JwtDecoder {
