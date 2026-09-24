@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 :root {
+  --font-ui: 'Space Grotesk', system-ui, sans-serif;
   --background: #fafafa;
   --surface: #ffffff;
   --text: #171717;
@@ -9,11 +10,64 @@
   --hover: #f2f2f2;
   --active: #ebebeb;
   --danger: #9b1c1c;
-  font-family: 'Space Grotesk', system-ui, sans-serif;
+  --primary-foreground: #ffffff;
+  --focus: #a3a3a3;
+  --focus-ring: rgba(0, 0, 0, 0.05);
+  --selection: #d4d4d4;
+  --selection-text: #171717;
+  --page-texture: none;
+  --sidebar-shadow: 8px 0 24px rgba(0, 0, 0, 0.04);
+  --popup-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  color-scheme: light;
+  font-family: var(--font-ui);
   color: var(--text);
   background: var(--background);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
+}
+:root[data-theme='dark'] {
+  --background: #111416;
+  --surface: #181d21;
+  --text: #f1f3f2;
+  --text-muted: #9aa4a7;
+  --border: #30383d;
+  --hover: #222a30;
+  --active: #2a343b;
+  --danger: #ff8e84;
+  --primary-foreground: #111416;
+  --focus: #77858b;
+  --focus-ring: rgba(255, 255, 255, 0.12);
+  --selection: #3a464c;
+  --selection-text: #f1f3f2;
+  --sidebar-shadow: 8px 0 24px rgba(0, 0, 0, 0.22);
+  --popup-shadow: 0 4px 16px rgba(0, 0, 0, 0.28);
+  color-scheme: dark;
+}
+:root[data-theme='terminal'] {
+  --font-ui: 'JetBrains Mono', monospace;
+  --background: #07100a;
+  --surface: #0b160d;
+  --text: #b6ffbd;
+  --text-muted: #62b86d;
+  --border: #195c2a;
+  --hover: #102719;
+  --active: #16351d;
+  --danger: #ff8175;
+  --primary-foreground: #031006;
+  --focus: #39ff14;
+  --focus-ring: rgba(57, 255, 20, 0.18);
+  --selection: #1c6730;
+  --selection-text: #d7ffda;
+  --page-texture: repeating-linear-gradient(
+    180deg,
+    rgba(57, 255, 20, 0.025) 0,
+    rgba(57, 255, 20, 0.025) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+  --sidebar-shadow: 8px 0 24px rgba(0, 0, 0, 0.34);
+  --popup-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  color-scheme: dark;
 }
 * {
   box-sizing: border-box;
@@ -25,6 +79,7 @@ body {
 body {
   margin: 0;
   background: var(--background);
+  background-image: var(--page-texture);
 }
 button,
 textarea,
@@ -34,6 +89,10 @@ select {
 }
 button {
   cursor: pointer;
+}
+::selection {
+  background: var(--selection);
+  color: var(--selection-text);
 }
 
 .tool {
@@ -86,8 +145,8 @@ button {
 .code-area:focus,
 .text-input:focus,
 .select-input:focus {
-  border-color: #a3a3a3;
-  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+  border-color: var(--focus);
+  box-shadow: 0 0 0 3px var(--focus-ring);
 }
 .actions {
   display: flex;
@@ -105,7 +164,7 @@ button {
 .primary {
   border: 1px solid var(--text);
   background: var(--text);
-  color: white;
+  color: var(--primary-foreground);
 }
 .secondary {
   border: 1px solid var(--border);

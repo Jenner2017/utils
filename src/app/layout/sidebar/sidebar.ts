@@ -1,5 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Theme, ThemeService } from '../../shared/services/theme.service';
 
 interface NavItem {
   label: string;
@@ -17,6 +18,7 @@ interface NavGroup {
   styleUrl: './sidebar.css',
 })
 export class Sidebar {
+  protected readonly themeService = inject(ThemeService);
   protected readonly menuOpen = signal(false);
   protected readonly groups: NavGroup[] = [
     {
@@ -55,5 +57,9 @@ export class Sidebar {
   }
   protected closeMenu(): void {
     this.menuOpen.set(false);
+  }
+
+  protected changeTheme(event: Event): void {
+    this.themeService.setTheme((event.target as HTMLSelectElement).value as Theme);
   }
 }

@@ -28,5 +28,20 @@
       </section>
     }
   </nav>
-  <p class="privacy-note">All processing happens<br />locally in your browser.</p>
+  <div class="sidebar-footer">
+    <label class="theme-control" for="theme-select">
+      <span>Theme</span>
+      <select
+        id="theme-select"
+        class="select-input"
+        [value]="themeService.theme()"
+        (change)="changeTheme($event)"
+      >
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+        <option value="terminal">Terminal</option>
+      </select>
+    </label>
+    <p class="privacy-note">All processing happens<br />locally in your browser.</p>
+  </div>
 </aside>
